@@ -4,6 +4,8 @@
     <title>Organizations</title>
 </head>
 <body>
+@extends('layouts.app')
+@section('content')
 <h1>Organizations List</h1>
 
 <a href="{{ route('organizations.create') }}">Create New Organization</a>
@@ -23,5 +25,6 @@
         </li>
     @endforeach
 </ul>
+@endsection
 </body>
 </html>
