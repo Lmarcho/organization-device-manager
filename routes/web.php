@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\DeviceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('organizations', OrganizationController::class);
+
+Route::resource('locations', LocationController::class);
+
+Route::resource('devices', DeviceController::class);
