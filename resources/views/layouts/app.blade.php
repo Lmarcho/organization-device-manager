@@ -3,40 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Application</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <title>Organization Device Manager</title>
+    @vite('resources/sass/app.scss')
+    @vite('resources/js/app.js')
 </head>
-<body class="bg-gray-100 text-gray-900">
-
-<!-- Header -->
-<header class="bg-blue-600 text-white p-4">
-    <div class="container mx-auto">
-        <h1 class="text-2xl font-bold">My Application</h1>
-    </div>
-</header>
-
+<body class="d-flex flex-column min-vh-100">
 <!-- Navigation -->
-<nav class="bg-blue-500 text-white p-2">
-    <div class="container mx-auto">
-        <ul class="flex space-x-4">
-            <li><a href="{{ route('organizations.index') }}" class="hover:underline">Organizations</a></li>
-            <li><a href="{{ route('locations.index', 1) }}" class="hover:underline">Locations</a></li> <!-- Replace 1 with actual organization ID -->
-            <li><a href="{{ route('devices.index', 1) }}" class="hover:underline">Devices</a></li> <!-- Replace 1 with actual location ID -->
-        </ul>
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="#">Device Manager</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('organizations.index') }}">Organizations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('locations.index', 1) }}">Locations</a> <!-- Replace with actual organization ID -->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('devices.index', 1) }}">Devices</a> <!-- Replace with actual location ID -->
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 
 <!-- Main Content -->
-<main class="container mx-auto p-4">
-    @yield('content')
+<main class="flex-grow-1">
+    <div class="container my-4">
+        @yield('content')
+    </div>
 </main>
 
 <!-- Footer -->
-<footer class="bg-blue-600 text-white p-4 mt-8">
-    <div class="container mx-auto">
-        <p>&copy; 2024 L-Marcho Organization Device Manager . All rights reserved.</p>
+<footer class="bg-dark text-white py-4 mt-auto">
+    <div class="container text-center">
+        <p>&copy; 2024 L-Marcho. All rights reserved.</p>
     </div>
 </footer>
-
 </body>
 </html>
