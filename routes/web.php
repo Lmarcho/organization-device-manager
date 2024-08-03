@@ -18,7 +18,7 @@ use App\Http\Controllers\DeviceController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::resource('organizations', OrganizationController::class);
 

@@ -12,7 +12,7 @@
 <nav class="bg-white shadow-md">
     <div class="container mx-auto px-4">
         <div class="flex justify-between items-center py-4">
-            <div class="text-lg font-semibold">Device Manager</div>
+            <div><a href="{{ route('home') }}" class="text-lg font-semibold hover:text-blue-500">Device Manager</a></div>
             <ul class="flex space-x-4">
                 <li><a class="text-gray-700 hover:text-blue-600" href="{{ route('organizations.index') }}">Organizations</a></li>
                 <li><a class="text-gray-700 hover:text-blue-600" href="{{ route('locations.index', 1) }}">Locations</a></li>
