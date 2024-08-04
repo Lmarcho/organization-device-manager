@@ -10,6 +10,9 @@
     <div class="bg-white shadow-md rounded-lg p-6 max-w-lg mx-auto mt-10">
         <h2 class="text-2xl font-bold mb-6 text-center">Device Details</h2>
         <div class="space-y-4">
+            <div class="flex justify-center">
+                <img src="{{ asset('images/' . $device->image) }}" alt="{{ $device->name }}" class="w-32 h-32 rounded-full">
+            </div>
             <p><strong>Name:</strong> {{ $device->name }}</p>
             <p><strong>Type:</strong> {{ $device->type }}</p>
             <p><strong>Status:</strong> {{ $device->status }}</p>

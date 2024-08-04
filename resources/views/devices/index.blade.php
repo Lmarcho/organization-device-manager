@@ -13,11 +13,14 @@
         <ul class="space-y-4">
             @foreach ($devices as $device)
                 <li class="bg-gray-100 p-4 rounded-lg shadow-md flex justify-between items-center">
-                    <div>
-                        <span class="font-semibold">{{ $device->name }}</span>
-                        <span class="text-gray-500"> ({{ $device->type }})</span>
-                        <p class="text-sm text-gray-600">Status: {{ $device->status }}</p>
-                        <p class="text-sm text-gray-600">Created: {{ $device->created_at->format('Y-m-d') }}</p>
+                    <div class="flex items-center space-x-4">
+                        <img src="{{ asset('images/' . $device->image) }}" alt="{{ $device->name }}" style="max-width: 10%;" class="rounded-full object-cover">
+                        <div>
+                            <span class="font-semibold">{{ $device->name }}</span>
+                            <span class="text-gray-500"> ({{ $device->type }})</span>
+                            <p class="text-sm text-gray-600">Status: {{ $device->status }}</p>
+                            <p class="text-sm text-gray-600">Created: {{ $device->created_at->format('Y-m-d') }}</p>
+                        </div>
                     </div>
                     <div class="flex space-x-2">
                         <a href="{{ route('devices.show', $device->id) }}" class="text-blue-500 hover:underline">View</a>
@@ -33,6 +36,7 @@
         </ul>
     </div>
 @endsection
+
 
 </body>
 </html>

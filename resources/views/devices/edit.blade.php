@@ -10,7 +10,7 @@
     <div class="bg-white shadow-md rounded-lg p-6 max-w-lg mx-auto mt-10">
         <h2 class="text-2xl font-bold mb-6 text-center">Edit Device</h2>
 
-        <form action="{{ route('devices.update', $device->id) }}" method="POST" class="space-y-4">
+        <form action="{{ route('devices.update', $device->id) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
             @csrf
             @method('PUT')
             <div>
@@ -26,6 +26,11 @@
                 </select>
             </div>
             <div>
+                <label for="image" class="block text-sm font-medium text-gray-700">Device Image</label>
+                <input type="file" name="image" id="image" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                <small class="text-gray-500">Leave blank if not changing</small>
+            </div>
+            <div>
                 <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
                 <select name="status" id="status" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
                     <option value="active" {{ $device->status == 'active' ? 'selected' : '' }}>Active</option>
@@ -39,6 +44,5 @@
         </form>
     </div>
 @endsection
-
 </body>
 </html>
