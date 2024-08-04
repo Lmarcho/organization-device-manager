@@ -4,12 +4,23 @@
     <title>Device Details</title>
 </head>
 <body>
-<h1>Device Details</h1>
-<p>Unique Number: {{ $device->unique_number }}</p>
-<p>Type: {{ $device->type }}</p>
-<p>Image URL: {{ $device->image }}</p>
-<p>Status: {{ $device->status }}</p>
+@extends('layouts.app')
 
-<a href="{{ route('devices.index', $location->id) }}">Back to Devices List</a>
+@section('content')
+    <div class="bg-white shadow-md rounded-lg p-6 max-w-lg mx-auto mt-10">
+        <h2 class="text-2xl font-bold mb-6 text-center">Device Details</h2>
+        <div class="space-y-4">
+            <p><strong>Name:</strong> {{ $device->name }}</p>
+            <p><strong>Type:</strong> {{ $device->type }}</p>
+            <p><strong>Status:</strong> {{ $device->status }}</p>
+            <p><strong>Created At:</strong> {{ $device->created_at->format('Y-m-d') }}</p>
+        </div>
+        <div class="mt-6 flex justify-end">
+            <a href="{{ route('devices.edit', $device->id) }}" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 mr-2">Edit</a>
+            <a href="{{ route('devices.index') }}" class="px-4 py-2 bg-gray-300 text-black rounded-md hover:bg-gray-400">Back to List</a>
+        </div>
+    </div>
+@endsection
+
 </body>
 </html>

@@ -90,7 +90,7 @@ class LocationController extends Controller
 
         $location->update($request->all());
 
-        return redirect()->route('organizations.locations.index', $organization)
+        return redirect()->route('locations.index', $organization)
             ->with('success', 'Location updated successfully.');
     }
 
@@ -101,7 +101,7 @@ class LocationController extends Controller
     {
         $location->delete();
 
-        return redirect()->route('organizations.locations.index', $organization)
+        return redirect()->route('locations.index', $organization)
             ->with('success', 'Location deleted successfully.');
     }
 }

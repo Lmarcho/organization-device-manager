@@ -4,26 +4,35 @@
     <title>Devices</title>
 </head>
 <body>
-<h1>Devices List for {{ $location->name }}</h1>
+@extends('layouts.app')
 
-<a href="{{ route('devices.create', $location->id) }}">Create New Device</a>
+@section('content')
+    <div class="bg-white shadow-md rounded-lg p-6 max-w-4xl mx-auto mt-10">
+        <h2 class="text-2xl font-bold mb-6 text-center">Devices List</h2>
+        <a href="{{ route('devices.create') }}" class="inline-block mb-6 px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600">Create New Device</a>
+        <ul class="space-y-4">
+            @foreach ($devices as $device)
+                <li class="bg-gray-100 p-4 rounded-lg shadow-md flex justify-between items-center">
+                    <div>
+                        <span class="font-semibold">{{ $device->name }}</span>
+                        <span class="text-gray-500"> ({{ $device->type }})</span>
+                        <p class="text-sm text-gray-600">Status: {{ $device->status }}</p>
+                        <p class="text-sm text-gray-600">Created: {{ $device->created_at->format('Y-m-d') }}</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <a href="{{ route('devices.show', $device->id) }}" class="text-blue-500 hover:underline">View</a>
+                        <a href="{{ route('devices.edit', $device->id) }}" class="text-yellow-500 hover:underline">Edit</a>
+                        <form action="{{ route('devices.destroy', $device->id) }}" method="POST" class="inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-red-500 hover:underline">Delete</button>
+                        </form>
+                    </div>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+@endsection
 
-<ul>
-    @foreach ($devices as $device)
-        <li>
-            <a href="{{ route('devices.show', [$location->id, $device->id]) }}">
-                Device #{{ $device->unique_number }} - {{ $device->type }}
-            </a>
-            <a href="{{ route('devices.edit', [$location->id, $device->id]) }}">Edit</a>
-            <form action="{{ route('devices.destroy', [$location->id, $device->id]) }}" method="POST" style="display:inline;">
-                @csrf
-                @method('DELETE')
-                <button type="submit">Delete</button>
-            </form>
-        </li>
-    @endforeach
-</ul>
-
-<a href="{{ route('locations.index', $location->organization_id) }}">Back to Locations</a>
 </body>
 </html>

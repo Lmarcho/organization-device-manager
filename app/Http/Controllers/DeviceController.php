@@ -39,7 +39,7 @@ class DeviceController extends Controller
 
         $location->devices()->create($request->all());
 
-        return redirect()->route('locations.devices.index', $location)
+        return redirect()->route('devices.index', $location)
             ->with('success', 'Device created successfully.');
     }
 
