@@ -30,8 +30,8 @@ class OrganizationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'code' => 'required|unique:organizations',
-            'name' => 'required',
+            'code' => 'required|string|max:255|unique:organizations',
+            'name' => 'required|string|max:255',
         ]);
 
         Organization::create($request->all());

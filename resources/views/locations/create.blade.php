@@ -10,6 +10,13 @@
     <div class="bg-white shadow-md rounded-lg p-6 max-w-lg mx-auto mt-10">
         <h2 class="text-2xl font-bold mb-6 text-center">Create New Location</h2>
 
+        @if ($errors->any())
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6" role="alert">
+                <strong class="font-bold">Error!</strong>
+                <span class="block sm:inline">{{ $errors->first() }}</span>
+            </div>
+        @endif
+
         <form action="{{ route('locations.store') }}" method="POST" class="space-y-4">
             @csrf
             <div>

@@ -43,6 +43,12 @@ class DeviceController extends Controller
             'status' => 'required|in:active,inactive',
         ]);
 
+        // Limit Number of Devices per Location
+        $location = Location::find($request->input('location_id'));
+        if ($location->devices()->count() >= 10) {
+            return back()->withErrors(['max_devices' => 'A location cannot have more than 10 devices.']);
+        }
+
         // Handle the image file upload
         if ($request->hasFile('image')) {
             $image = $request->file('image');
