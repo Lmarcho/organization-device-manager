@@ -10,12 +10,22 @@
     <div class="bg-white shadow-md rounded-lg p-6 max-w-lg mx-auto mt-10">
         <h2 class="text-2xl font-bold mb-6 text-center">Edit Device</h2>
 
+        @if ($errors->any())
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6" role="alert">
+                <strong class="font-bold">Error!</strong>
+                <span class="block sm:inline">{{ $errors->first() }}</span>
+            </div>
+        @endif
+
         <form action="{{ route('devices.update', $device->id) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
             @csrf
             @method('PUT')
             <div>
-                <label for="name" class="block text-sm font-medium text-gray-700">Device Name</label>
-                <input type="text" name="name" id="name" value="{{ $device->name }}" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                <label for="unique_number" class="block text-sm font-medium text-gray-700">Unique Number</label>
+                <input type="text" name="unique_number" id="unique_number" value="{{ $device->unique_number }}" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                @error('unique_number')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
             </div>
             <div>
                 <label for="type" class="block text-sm font-medium text-gray-700">Device Type</label>
