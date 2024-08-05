@@ -12,7 +12,6 @@
         <div class="flex space-x-4">
             <img src="{{ asset('images/' . $device->image) }}" alt="{{ $device->name }}" class="w-32 h-32 rounded-md">
             <div>
-                <p><strong>Name:</strong> {{ $device->name }}</p>
                 <p><strong>Unique Number:</strong> {{ $device->unique_number }}</p>
                 <p><strong>Type:</strong> {{ $device->type }}</p>
                 <p><strong>Status:</strong> {{ $device->status }}</p>

@@ -20,13 +20,6 @@
         <form action="{{ route('devices.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
             @csrf
             <div>
-                <label for="name" class="block text-sm font-medium text-gray-700">Device Name</label>
-                <input type="text" name="name" id="name" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required>
-                @error('name')
-                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-            <div>
                 <label for="unique_number" class="block text-sm font-medium text-gray-700">Unique Number</label>
                 <input type="text" name="unique_number" id="unique_number" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" required>
                 @error('unique_number')
