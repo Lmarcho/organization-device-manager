@@ -73,9 +73,10 @@ class DeviceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Location $location, Device $device)
+    public function show($id)
     {
-        return view('devices.show', compact('location', 'device'));
+        $device = Device::findOrFail($id);
+        return view('devices.show', compact('device'));
     }
 
 

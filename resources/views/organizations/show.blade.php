@@ -7,17 +7,31 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="bg-white shadow-md rounded-lg p-6 max-w-lg mx-auto mt-10">
-        <h2 class="text-2xl font-bold mb-4">Organization Details</h2>
-        <p><strong>Code:</strong> {{ $organization->code }}</p>
-        <p><strong>Name:</strong> {{ $organization->name }}</p>
-        <p><strong>Locations:</strong> {{ count($organization->locations) }}</p>
-        <p><strong>Devices:</strong> {{ count($organization->devices) }}</p>
-        <div class="mt-6">
-            <a href="{{ route('organizations.edit', $organization->id) }}" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Edit</a>
-            <a href="{{ route('organizations.index') }}" class="px-4 py-2 bg-gray-300 text-black rounded-md hover:bg-gray-400">Back to List</a>
-        </div>
+    <div class="bg-white shadow-md rounded-lg p-6 max-w-4xl mx-auto mt-10">
+        <h2 class="text-2xl font-bold mb-6 text-center">Locations for {{ $organization->name }}</h2>
+        <a href="{{ route('locations.create', ['organization_id' => $organization->id]) }}" class="inline-block mb-6 px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600">Add New Location</a>
+        <ul class="space-y-4">
+            @foreach ($organization->locations as $location)
+                <li class="bg-gray-100 p-4 rounded-lg shadow-md flex justify-between items-center">
+                    <div>
+                        <span class="font-semibold">{{ $location->name }}</span>
+                        <span class="text-gray-500"> ({{ $location->serial_number }})</span>
+                        <p class="text-sm text-gray-600">IPv4 Address: {{ $location->ipv4_address }}</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <a href="{{ route('locations.show', $location->id) }}" class="text-blue-500 hover:underline">View Devices</a>
+                        <a href="{{ route('locations.edit', $location->id) }}" class="text-yellow-500 hover:underline">Edit</a>
+                        <form action="{{ route('locations.destroy', $location->id) }}" method="POST" class="inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-red-500 hover:underline">Delete</button>
+                        </form>
+                    </div>
+                </li>
+            @endforeach
+        </ul>
     </div>
 @endsection
+
 </body>
 </html>

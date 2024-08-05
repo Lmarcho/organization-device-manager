@@ -68,9 +68,10 @@ class LocationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Organization $organization, Location $location): Factory|\Illuminate\Foundation\Application|View|Application
+    public function show($id)
     {
-        return view('locations.show', compact('organization', 'location'));
+        $location = Location::with('devices')->findOrFail($id);
+        return view('locations.show', compact('location'));
     }
 
 
