@@ -17,9 +17,19 @@
             </div>
         @endif
 
-        <form action="{{ route('devices.update', $device->id) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+        <form action="{{ route('devices.update', [$device->id]) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
             @csrf
             @method('PUT')
+            <div>
+                <label for="location_id" class="block text-sm font-medium text-gray-700">Location</label>
+                <select name="location_id" id="location_id" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                    @foreach ($locations as $loc)
+                        <option value="{{ $loc->id }}" {{ $device->location_id == $loc->id ? 'selected' : '' }}>
+                            {{ $loc->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
             <div>
                 <label for="unique_number" class="block text-sm font-medium text-gray-700">Unique Number</label>
                 <input type="text" name="unique_number" id="unique_number" value="{{ $device->unique_number }}" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>

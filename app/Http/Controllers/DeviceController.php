@@ -81,9 +81,10 @@ class DeviceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Location $location, Device $device)
+    public function edit(Device $device)
     {
-        return view('devices.edit', compact('location', 'device'));
+        $locations = Location::all(); // Fetch all locations
+        return view('devices.edit', compact('device', 'locations'));
     }
 
 
@@ -96,8 +97,18 @@ class DeviceController extends Controller
             'unique_number' => 'required|unique:devices,unique_number,' . $device->id,
             'type' => 'required',
             'status' => 'required|in:active,inactive',
+            'location_id' => 'required|exists:locations,id',
         ]);
 
+        // Handle image upload if a new image is provided
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->extension();
+            $image->move(public_path('images'), $imageName);
+            $device->image = $imageName;
+        }
+
+        // Update the device with new data
         $device->update($request->all());
 
         return redirect()->route('locations.show', $device->location_id)
