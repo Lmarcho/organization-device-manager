@@ -50,6 +50,12 @@ class LocationController extends Controller
             'organization_id' => 'required|exists:organizations,id', // Ensure organization_id is provided and valid
         ]);
 
+        // Limit Number of Locations per Organization
+        $organization = Organization::find($request->input('organization_id'));
+        if ($organization->locations()->count() >= 5) {
+            return back()->withErrors(['max_locations' => 'An organization cannot have more than 5 locations.']);
+        }
+
         // Create the location
         Location::create($request->all());
 
@@ -62,9 +68,10 @@ class LocationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Organization $organization, Location $location): Factory|\Illuminate\Foundation\Application|View|Application
+    public function show($id)
     {
-        return view('locations.show', compact('organization', 'location'));
+        $location = Location::with('devices')->findOrFail($id);
+        return view('locations.show', compact('location'));
     }
 
 

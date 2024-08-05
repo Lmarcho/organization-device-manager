@@ -30,8 +30,8 @@ class OrganizationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'code' => 'required|unique:organizations',
-            'name' => 'required',
+            'code' => 'required|string|max:255|unique:organizations',
+            'name' => 'required|string|max:255',
         ]);
 
         Organization::create($request->all());
@@ -43,8 +43,9 @@ class OrganizationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Organization $organization)
+    public function show($id)
     {
+        $organization = Organization::with('locations')->findOrFail($id);
         return view('organizations.show', compact('organization'));
     }
 

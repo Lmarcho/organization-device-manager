@@ -10,6 +10,13 @@
     <div class="bg-white shadow-md rounded-lg p-6 max-w-lg mx-auto mt-10">
         <h2 class="text-2xl font-bold mb-6 text-center">Create New Location</h2>
 
+        @if ($errors->any())
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6" role="alert">
+                <strong class="font-bold">Error!</strong>
+                <span class="block sm:inline">{{ $errors->first() }}</span>
+            </div>
+        @endif
+
         <form action="{{ route('locations.store') }}" method="POST" class="space-y-4">
             @csrf
             <div>
@@ -20,10 +27,16 @@
                         <option value="{{ $organization->id }}">{{ $organization->name }}</option>
                     @endforeach
                 </select>
+                @error('organization_id')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
             </div>
             <div>
                 <label for="serial_number" class="block text-sm font-medium text-gray-700">Serial Number</label>
                 <input type="text" name="serial_number" id="serial_number" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required>
+                @error('serial_number')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
             </div>
             <div>
                 <label for="name" class="block text-sm font-medium text-gray-700">Location Name</label>
