@@ -78,26 +78,29 @@ class LocationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Organization $organization, Location $location): Factory|\Illuminate\Foundation\Application|View|Application
+    public function edit(Location $location)
     {
-        return view('locations.edit', compact('organization', 'location'));
+        $organizations = Organization::all();
+        return view('locations.edit', compact('location', 'organizations'));
     }
 
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Organization $organization, Location $location): RedirectResponse
+    public function update(Request $request, Organization $organization, Location $location)
     {
         $request->validate([
+            'organization_id' => 'required|exists:organizations,id',
             'serial_number' => 'required|unique:locations,serial_number,' . $location->id,
             'name' => 'required',
             'ipv4_address' => 'required|ipv4',
         ]);
 
-        $location->update($request->all());
+        // Update the location including the organization ID
+        $location->update($request->only('serial_number', 'name', 'ipv4_address', 'organization_id'));
 
-        return redirect()->route('locations.index', $organization)
+        return redirect()->route('locations.index', $request->organization_id)
             ->with('success', 'Location updated successfully.');
     }
 
