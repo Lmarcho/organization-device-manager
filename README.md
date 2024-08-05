@@ -1,66 +1,86 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Organization Device Manager
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Project Overview
+The Organization Device Manager is a SaaS product designed to manage organizations, their locations, and associated devices. It provides features for creating, editing, viewing, and deleting organizations, locations, and devices. Each device can be assigned to a specific location within an organization.
 
-## About Laravel
+## Technologies Used
+- **Laravel**: PHP framework used for the backend.
+- **MySQL**: Database for storing data.
+- **Tailwind CSS**: Utility-first CSS framework used for styling.
+- **Vite**: Tooling for front-end assets.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Prerequisites
+- **PHP >= 8.1**
+- **Composer**
+- **Node.js and npm**
+- **MySQL**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Installation
+1. **Clone the repository:**
+   ```sh
+   git clone git@github.com:Lmarcho/organization-device-manager.git
+   cd organization-device-manager
+2. **Install PHP dependencies:**
+   ```sh
+    composer install
+3. **Install Node.js dependencies:**
+   ```sh
+    npm install
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Setup
+1. **Create a .env file:**
+   ```sh
+    cp .env.example .env
+- Update the .env file with your database credentials and other necessary configurations.
+2. **Generate application key:**
+   ```sh
+    php artisan key:generate
+3. **Run migrations:**
+   ```sh
+    php artisan migrate
+4. **Compile assets::**
+   ```sh
+    npm run build
 
-## Learning Laravel
+## Running the Application
+1. **Start the local development server:**
+   ```sh
+    php artisan serve
+2. **Start the asset server:**
+   ```sh
+    npm run dev
+3. **Access the application:**
+   ```sh
+    http://127.0.0.1:8000
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Testing
+1. **Run tests:**
+   ```sh
+    php artisan test
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Usage
+### Organizations
+- **Create, edit, delete, and view organizations.**
+- **Each organization can have multiple locations.**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Locations
+- **Create, edit, delete, and view locations within an organization.**
+- **Each location can have multiple devices.**
 
-## Laravel Sponsors
+### Devices
+- **Create, edit, delete, and view devices within a location.**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Project Structure
+- **app/**: Contains the controllers, models, and other backend logic.
+- **resources/views/**: Contains the Blade templates for the front-end.
+- **public/**: Publicly accessible files like CSS, JavaScript, and images.
+- **routes/**: Contains all route definitions.
+- **database/migrations/**: Migration files for database schema.
 
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Troubleshooting
+- **Ensure all prerequisites are installed correctly.**
+- **Check `.env` configurations, especially database settings.**
+- **If styles are not loading, check the `npm run dev` or `npm run build` process.**
 
 ## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
